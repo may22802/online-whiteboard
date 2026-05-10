@@ -1,11 +1,26 @@
-// convex/schema.ts
-import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { defineSchema, defineTable } from "convex/server";
 
 export default defineSchema({
-  messages: defineTable({
-    channel: v.id("channels"),
-    body: v.string(),
-    author: v.string(), // or v.id("users"), depending on your data model
-  }).index("by_author", ["author"]),
+  boards: defineTable({
+    title: v.string(),
+    orgId: v.string(),
+    authorId: v.string(),
+    authorName: v.string(),
+    imageUrl: v.string(),
+  })
+    .index("by_org", ["orgId"])
+    .searchIndex("search_title", {
+      searchField: "title",
+      filterFields: ["orgId"]
+    }),
+  userFavorites: defineTable({
+    orgId: v.string(),
+    userId: v.string(),
+    boardId: v.id("boards")
+  })
+    .index("by_board", ["boardId"])
+    .index("by_user_org", ["userId", "orgId"])
+    .index("by_user_board", ["userId", "boardId"])
+    .index("by_user_board_org", ["userId", "boardId", "orgId"])
 });

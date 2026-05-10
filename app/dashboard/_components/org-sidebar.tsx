@@ -2,33 +2,32 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Poppins } from "next/font/google";
 import { LayoutDashboard, Star } from "lucide-react";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-const font = Poppins({
-  subsets: ["latin"],
-  weight: ["600"],
-});
 
 export const OrgSidebar = () => {
   const searchParams = useSearchParams();
   const favorites = searchParams.get("favorites");
+
   return (
     <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5">
       <Link href="/">
         <div className="flex items-center gap-x-2">
-          <Image src="/logo.svg" width={40} height={40} alt="logo" />
-          <span className={cn("font-semibold ", font.className)}>
-            Online Whiteboard
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            height={60}
+            width={60}
+          />
+          <span className="font-semibold text-2xl">
+            Board
           </span>
         </div>
       </Link>
-       <OrganizationSwitcher
+      <OrganizationSwitcher
         hidePersonal
         appearance={{
           elements: {
@@ -51,7 +50,7 @@ export const OrgSidebar = () => {
       />
       <div className="space-y-1 w-full">
         <Button
-          variant={favorites ? "ghost": "secondary"}
+          variant={favorites ? "ghost" : "secondary"}
           asChild
           size="lg"
           className="font-normal justify-start px-2 w-full"
@@ -62,16 +61,14 @@ export const OrgSidebar = () => {
           </Link>
         </Button>
         <Button
-          variant={favorites ? "secondary": "ghost"}
+          variant={favorites ? "secondary" : "ghost"}
           asChild
           size="lg"
           className="font-normal justify-start px-2 w-full"
         >
           <Link href={{
             pathname: "/dashboard",
-            query: {
-              favorites: true,
-            },
+            query: { favorites: true }
           }}>
             <Star className="h-4 w-4 mr-2" />
             Favorite boards

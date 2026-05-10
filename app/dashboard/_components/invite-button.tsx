@@ -4,11 +4,10 @@ import { OrganizationProfile } from "@clerk/nextjs";
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { VisuallyHidden } from "radix-ui";
-import { DialogTitle } from "@radix-ui/react-dialog";
 
 export const InviteButton = () => {
   return (
@@ -20,10 +19,10 @@ export const InviteButton = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="p-0 bg-transparent border-none max-w-[880px]">
-        <VisuallyHidden.Root>
-            <DialogTitle>Create Organization</DialogTitle>
-        </VisuallyHidden.Root>
-        <OrganizationProfile />
+        <DialogTitle className="sr-only">
+          Organization profile
+        </DialogTitle>
+        <OrganizationProfile routing="hash" />
       </DialogContent>
     </Dialog>
   );

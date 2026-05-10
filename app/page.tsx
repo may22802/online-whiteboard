@@ -88,7 +88,6 @@
 
 import { Authenticated, Unauthenticated } from "convex/react";
 import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation"; // 1. Import useRouter
 import Link from "next/link";
 
 export default function Home() {

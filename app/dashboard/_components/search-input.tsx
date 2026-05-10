@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 export const SearchInput = () => {
   const router = useRouter();
   const [value, setValue] = useState("");
-  const [debouncedValue, setDebouncedValue] = useDebounceValue(value, 500);
+  const [debouncedValue] = useDebounceValue(value, 500);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -29,7 +29,7 @@ export const SearchInput = () => {
       },
     }, { skipEmptyString: true, skipNull: true });
 
-    router.replace(url);
+    router.push(url);
   }, [debouncedValue, router]);
 
   return (
