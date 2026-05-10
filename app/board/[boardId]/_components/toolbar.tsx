@@ -1,12 +1,14 @@
 import { 
   Circle, 
+  Download,
   MousePointer2, 
   Pencil, 
   Redo2, 
   Square, 
   StickyNote, 
   Type,
-  Undo2
+  Undo2,
+  Vote
 } from "lucide-react";
 
 import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
@@ -20,6 +22,9 @@ interface ToolbarProps {
   redo: () => void;
   canUndo: boolean;
   canRedo: boolean;
+  isVotingOpen: boolean;
+  onToggleVoting: () => void;
+  onExport: () => void;
 };
 
 export const Toolbar = ({
@@ -29,6 +34,9 @@ export const Toolbar = ({
   redo,
   canUndo,
   canRedo,
+  isVotingOpen,
+  onToggleVoting,
+  onExport,
 }: ToolbarProps) => {
   return (
     <div className="absolute top-[50%] -translate-y-[50%] left-2 flex flex-col gap-y-4">
@@ -105,6 +113,12 @@ export const Toolbar = ({
             canvasState.mode === CanvasMode.Pencil
           }
         />
+        <ToolButton
+          label="Voting"
+          icon={Vote}
+          onClick={onToggleVoting}
+          isActive={isVotingOpen}
+        />
       </div>
       <div className="bg-white rounded-md p-1.5 flex flex-col items-center shadow-md">
         <ToolButton
@@ -118,6 +132,13 @@ export const Toolbar = ({
           icon={Redo2}
           onClick={redo}
           isDisabled={!canRedo}
+        />
+      </div>
+      <div className="bg-white rounded-md p-1.5 flex flex-col items-center shadow-md">
+        <ToolButton
+          label="Export SVG"
+          icon={Download}
+          onClick={onExport}
         />
       </div>
     </div>

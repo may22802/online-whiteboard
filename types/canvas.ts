@@ -7,6 +7,7 @@ export type Color = {
 export type Camera = {
   x: number;
   y: number;
+  zoom: number;
 };
 
 export enum LayerType {
@@ -128,3 +129,24 @@ export enum CanvasMode {
 };
 
 export type Layer = RectangleLayer | EllipseLayer | PathLayer | TextLayer | NoteLayer
+
+export type VoteEntry = {
+  name: string;
+  count: number;
+};
+
+export type VotingSession = {
+  id: string;
+  name: string;
+  anonymous: boolean;
+  maxVotes: number;
+  status: "active" | "ended";
+  createdAt: number;
+  endedAt?: number;
+  votes: Record<string, Record<string, VoteEntry>>;
+  done: Record<string, { name: string }>;
+};
+
+export type VotingState = {
+  active: VotingSession | null;
+};

@@ -19,11 +19,11 @@ export const OrgSidebar = () => {
           <Image
             src="/logo.svg"
             alt="Logo"
-            height={60}
-            width={60}
+            height={36}
+            width={36}
           />
-          <span className="font-semibold text-2xl">
-            Board
+          <span className="font-semibold text-lg leading-tight">
+            Online whiteboard
           </span>
         </div>
       </Link>

@@ -6,7 +6,7 @@ import {
 } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
-import { Layer, Color } from "@/types/canvas";
+import { Layer, Color, VotingState } from "@/types/canvas";
   
 const client = createClient({
   throttle: 16,
@@ -30,6 +30,7 @@ type Presence = {
 type Storage = {
   layers: LiveMap<string, LiveObject<Layer>>;
   layerIds: LiveList<string>;
+  voting: LiveObject<VotingState>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as

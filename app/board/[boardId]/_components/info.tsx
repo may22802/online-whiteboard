@@ -43,14 +43,14 @@ export const Info = ({
           <Link href="/dashboard">
             <Image
               src="/logo.svg"
-              alt="Board logo"
-              height={40}
-              width={40}
+              alt="Online whiteboard logo"
+              height={28}
+              width={28}
             />
             <span className={cn(
-              "font-semibold text-xl ml-2 text-black",
+              "font-semibold text-sm ml-2 text-black",
             )}>
-              Board
+              Online whiteboard
             </span>
           </Link>
         </Button>
